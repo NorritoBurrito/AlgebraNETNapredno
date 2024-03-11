@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Delegati_primjer
+{
+    public delegate void TestDelegat(string poruka);
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            TestDelegat del;
+            del = KlasaA.MetodaA;
+            del("Testiranje A"); //ovo je poruka od gore koja će nam se prikazati
+
+            del=KlasaB.MetodaB;
+            del("Testiram opciju B");
+
+            del = (string p) => Console.WriteLine("Poziv preko Lambda izraza s parametrom: " + p);
+            del("Testiram lambdu");
+        }
+    }
+
+    public class KlasaA
+    {
+        public static void MetodaA(string poruka)
+        {
+            Console.WriteLine("Pozvali smo KlasaA.MetodaA() s parametrom: "+poruka);
+        }
+    }
+
+    public class KlasaB
+    {
+        public static void MetodaB(string poruka)
+        {
+            Console.WriteLine("Pozvali smo KlasaB.MetodaB() s parametrom: " + poruka);
+        }
+    }
+
+}
